@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Sign-Up</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #79797c;
+        }
+        .container {
+            background-color: #353333;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 380px;
+            max-width: 90%;
+            box-sizing: border-box;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #e6e6e6;
+            font-size: 1.8em;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #e6e6e6;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="date"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="date"]:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #0069d9;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        .form-group input[type="radio"],
+        .form-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .form-group .radio-group label {
+            display: inline;
+            margin-right: 15px;
+        }
+        .submit-button, .receive-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .submit-button:hover, .receive-button:hover {
+            background-color: #0056b3;
+        }
+        .confirmation-message {
+            display: none;
+            text-align: center;
+            color: #28a745;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="eventRegistrationForm">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="firstNameInput">First Name:</label>
+                <input type="text" id="firstNameInput" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastNameInput">Last Name:</label>
+                <input type="text" id="lastNameInput" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="dobInput">Date of Birth (dd/mm/yyyy):</label>
+                <input type="date" id="dobInput" name="dob" placeholder="dd/mm/yyyy" required>
+            </div>
+            <div class="form-group">
+                <label for="emailInput">Email Address:</label>
+                <input type="email" id="emailInput" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <input type="radio" id="genderMale" name="gender" value="male" required>
+                    <label for="genderMale">Male</label>
+                    <input type="radio" id="genderFemale" name="gender" value="female">
+                    <label for="genderFemale">Female</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phoneInput">Contact Number:</label>
+                <input type="text" id="phoneInput" name="phoneNumber" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="addressInput">Address:</label>
+                <textarea id="addressInput" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="branchSelect">Branch:</label>
+                <select id="branchSelect" name="branch" required>
+                    <option value="">--Select Branch--</option>
+                    <option value="CSE">Computer Science Engineering</option>
+                    <option value="ECE">Electronics and Communication Engineering</option>
+                    <option value="MECH">Mechanical Engineering</option>
+                    <option value="CIVIL">Civil Engineering</option>
+                    <option value="IT">Information Technology</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="termsCheckbox" name="terms" required>
+                <label for="termsCheckbox" style="display: inline;">I accept the terms and conditions</label>
+            </div>
+            <button type="submit" class="submit-button">Submit Registration</button>
+            <button type="button" class="receive-button" id="receiveButton">Receive</button>
+            <div class="confirmation-message" id="confirmMsg">
+                Registration Successful!
+            </div>
+        </form>
+    </div>
+    <script>
+        const registrationForm = document.getElementById('eventRegistrationForm');
+        const confirmationDisplay = document.getElementById('confirmMsg');
+        const receiveButton = document.getElementById('receiveButton');
+
+        registrationForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            confirmationDisplay.style.display = 'block';
+            registrationForm.reset();
+            setTimeout(() => {
+                confirmationDisplay.style.display = 'none';
+            }, 3000);
+        });
+
+        receiveButton.addEventListener('click', function() {
+            alert('Receive button clicked! (This is a placeholder action)');
+        });
+    </script>
+</body>
+</html>
